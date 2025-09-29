@@ -16,7 +16,7 @@ router.get('/profile', verifytoken, (req, res) => {
 
 router.get('/games', verifytoken, async (req, res) => {
   try {
-    const games = await Game.findall();
+    const games = await Game.findAll();
     const usergames = games.filter(game => 
       game.player1 === req.user.id || game.player2 === req.user.id
     );
@@ -29,7 +29,7 @@ router.get('/games', verifytoken, async (req, res) => {
 
 router.get('/stats', verifytoken, async (req, res) => {
   try {
-    const games = await Game.findall();
+    const games = await Game.findAll();
     const usergames = games.filter(game => 
       game.player1 === req.user.id || game.player2 === req.user.id
     );
@@ -45,7 +45,7 @@ router.get('/stats', verifytoken, async (req, res) => {
       wins,
       draws,
       losses,
-      winrate: finishedgames.length > 0 ? (wins / finishedgames.length * 100).tofixed(1) : 0
+      winrate: finishedgames.length > 0 ? (wins / finishedgames.length * 100).toFixed(1) : 0
     });
   } catch (error) {
     res.status(500).json({ error: 'erreur serveur' });

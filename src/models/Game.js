@@ -35,10 +35,10 @@ class game {
 
   async join(player2id) {
     if (this.status !== 'waiting') {
-      throw new error('cette partie n\'est pas en attente d\'un joueur');
+      throw new Error('cette partie n\'est pas en attente d\'un joueur');
     }
     if (this.player1 === player2id) {
-      throw new error('vous ne pouvez pas rejoindre votre propre partie');
+      throw new Error('vous ne pouvez pas rejoindre votre propre partie');
     }
     this.player2 = player2id;
     this.currentplayer = this.player1;
@@ -49,16 +49,16 @@ class game {
 
   async play(playerid, row, col) {
     if (this.status !== 'in_progress') {
-      throw new error('la partie n\'est pas en cours');
+      throw new Error('la partie n\'est pas en cours');
     }
     if (this.currentplayer !== playerid) {
-      throw new error('ce n\'est pas votre tour');
+      throw new Error('ce n\'est pas votre tour');
     }
     if (row < 0 || row > 2 || col < 0 || col > 2) {
-      throw new error('coordonnees invalides');
+      throw new Error('coordonnees invalides');
     }
     if (this.board[row][col] !== '') {
-      throw new error('cette case est deja prise');
+      throw new Error('cette case est deja prise');
     }
 
     const marker = (playerid === this.player1) ? 'x' : 'o';
@@ -102,7 +102,7 @@ class game {
       games[index] = this;
       await storage.savegames(games);
     } else {
-      throw new error('partie non trouvee pour la sauvegarde');
+      throw new Error('partie non trouvee pour la sauvegarde');
     }
   }
 

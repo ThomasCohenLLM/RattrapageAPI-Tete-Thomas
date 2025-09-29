@@ -14,7 +14,7 @@ class user {
   static async create(email, username, password) {
     const users = await storage.getusers();
     if (users.find(u => u.email === email)) {
-      throw new error('un utilisateur avec cet email existe deja');
+      throw new Error('un utilisateur avec cet email existe deja');
     }
     const id = uuidv4();
     const passwordhash = await bcrypt.hash(password, 10);

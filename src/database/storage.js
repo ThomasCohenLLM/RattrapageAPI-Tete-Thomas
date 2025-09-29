@@ -21,17 +21,17 @@ class jsonstorage {
     try {
       await fs.access(filepath);
     } catch (error) {
-      await fs.writefile(filepath, json.stringify(defaultcontent, null, 2));
+      await fs.writeFile(filepath, JSON.stringify(defaultcontent, null, 2));
     }
   }
 
   async _readfile(filepath) {
-    const data = await fs.readfile(filepath, 'utf8');
-    return json.parse(data);
+    const data = await fs.readFile(filepath, 'utf8');
+    return JSON.parse(data);
   }
 
   async _writefile(filepath, data) {
-    await fs.writefile(filepath, json.stringify(data, null, 2), 'utf8');
+    await fs.writeFile(filepath, JSON.stringify(data, null, 2), 'utf8');
   }
 
   // user methods
