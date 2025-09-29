@@ -41,7 +41,7 @@ class user {
   }
 
   generatetoken() {
-    return jwt.sign({ id: this.id }, process.env.JWT_SECRET, { expiresin: '1h' });
+    return jwt.sign({ id: this.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   }
 
   tojson() {

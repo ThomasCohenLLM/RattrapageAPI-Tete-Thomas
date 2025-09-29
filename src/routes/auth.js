@@ -3,7 +3,7 @@ const user = require('../models/User');
 const { verifytoken } = require('../middleware/auth');
 const storage = require('../database/storage');
 
-const router = express.router();
+const router = express.Router();
 
 router.post('/register', async (req, res, next) => {
   try {

@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const storage = require('../database/storage');
 
-class game {
+class Game {
   constructor(id, player1, player2 = null, board = [['', '', ''], ['', '', ''], ['', '', '']], currentplayer = null, status = 'waiting', winner = null) {
     this.id = id;
     this.player1 = player1;
@@ -14,7 +14,7 @@ class game {
 
   static async create(player1id) {
     const id = uuidv4();
-    const newgame = new game(id, player1id);
+    const newgame = new Game(id, player1id);
     const games = await storage.getgames();
     games.push(newgame);
     await storage.savegames(games);
@@ -24,13 +24,13 @@ class game {
   static async findbyid(gameid) {
     const games = await storage.getgames();
     const gamedata = games.find(g => g.id === gameid);
-    return gamedata ? new game(gamedata.id, gamedata.player1, gamedata.player2, gamedata.board, gamedata.currentplayer, gamedata.status, gamedata.winner) : null;
+    return gamedata ? new Game(gamedata.id, gamedata.player1, gamedata.player2, gamedata.board, gamedata.currentplayer, gamedata.status, gamedata.winner) : null;
   }
 
   static async findbyplayerid(playerid) {
     const games = await storage.getgames();
     return games.filter(g => g.player1 === playerid || g.player2 === playerid)
-                     .map(gamedata => new game(gamedata.id, gamedata.player1, gamedata.player2, gamedata.board, gamedata.currentplayer, gamedata.status, gamedata.winner));
+                     .map(gamedata => new Game(gamedata.id, gamedata.player1, gamedata.player2, gamedata.board, gamedata.currentplayer, gamedata.status, gamedata.winner));
   }
 
   async join(player2id) {
@@ -119,4 +119,4 @@ class game {
   }
 }
 
-module.exports = game;
+module.exports = Game;

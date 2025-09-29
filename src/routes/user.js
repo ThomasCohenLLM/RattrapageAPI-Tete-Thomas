@@ -1,8 +1,9 @@
 const express = require('express');
 const Game = require('../models/Game');
 const { verifytoken } = require('../middleware/auth');
+const storage = require('../database/storage');
 
-const router = express.router();
+const router = express.Router();
 
 router.get('/profile', verifytoken, (req, res) => {
   res.json({
@@ -16,7 +17,7 @@ router.get('/profile', verifytoken, (req, res) => {
 
 router.get('/games', verifytoken, async (req, res) => {
   try {
-    const games = await Game.findAll();
+    const games = await storage.getgames();
     const usergames = games.filter(game => 
       game.player1 === req.user.id || game.player2 === req.user.id
     );
@@ -29,7 +30,7 @@ router.get('/games', verifytoken, async (req, res) => {
 
 router.get('/stats', verifytoken, async (req, res) => {
   try {
-    const games = await Game.findAll();
+    const games = await storage.getgames();
     const usergames = games.filter(game => 
       game.player1 === req.user.id || game.player2 === req.user.id
     );

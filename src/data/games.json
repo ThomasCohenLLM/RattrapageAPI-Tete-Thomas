@@ -1,0 +1,27 @@
+[
+  {
+    "id": "f35aa1a0-7785-4316-919e-f988bf68a310",
+    "player1": "bb1b3847-7e8f-4e54-9c7c-b3d88f85771d",
+    "player2": "b18daffb-9b5c-4029-8633-11f00bdae950",
+    "board": [
+      [
+        "x",
+        "",
+        ""
+      ],
+      [
+        "",
+        "o",
+        ""
+      ],
+      [
+        "",
+        "",
+        ""
+      ]
+    ],
+    "currentplayer": "bb1b3847-7e8f-4e54-9c7c-b3d88f85771d",
+    "status": "in_progress",
+    "winner": null
+  }
+]
